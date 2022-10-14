@@ -2,6 +2,7 @@ package br.sc.senai.almoxarifado.model.service;
 
 import br.sc.senai.almoxarifado.model.entities.Pessoa;
 import br.sc.senai.almoxarifado.repository.PessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,11 +14,9 @@ import java.util.Optional;
 
 @Service
 public class PessoaService {
-    private final PessoaRepository pessoaRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository) {
-        this.pessoaRepository = pessoaRepository;
-    }
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
     public List<Pessoa> findAll() {
         return pessoaRepository.findAll();

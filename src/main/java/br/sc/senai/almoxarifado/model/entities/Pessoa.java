@@ -6,32 +6,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.atmosphere.config.service.Get;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_pessoa")
+@Table(name = "pessoas")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Pessoa {
 
     @Id
     @Column(length = 50, nullable = false, unique = true)
     private String matricula;
+
     @Column(length = 50, nullable = false)
     private String nome;
+
     @Column(length = 50, nullable = false)
     private String sobrenome;
+
     @Column(length = 50, nullable = false, unique = true)
     private String email;
+
     @Column(length = 50, nullable = false)
     private String senha;
-    @Column(length = 1, nullable = false)
-    private Integer tipo;
-    // 1- Professor
-    // 2- Atendente
-    // 3- Atendente Jr
-    // 4- Admin
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 2, nullable = false)
+    private Cargo cargo;
+    // 1 - Administrador
+    // 2 - Atendente
+    // 3 - Assistente
+    // 4 - Professor
 }
 

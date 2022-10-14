@@ -1,5 +1,6 @@
 package br.sc.senai.almoxarifado.DTO;
 
+import br.sc.senai.almoxarifado.model.entities.Cargo;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -11,5 +12,5 @@ public class PessoaDTO {
     private String sobrenome;
     private String email;
     private String senha;
-    private Integer tipo;
+    private Cargo cargo;
 }
