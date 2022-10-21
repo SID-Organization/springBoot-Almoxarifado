@@ -13,4 +13,8 @@ public class Arquivo {
 
     @Column(nullable = false)
     private File arquivo;
+
+    @ManyToOne
+    @JoinColumn
+    private Item idItem;
 }

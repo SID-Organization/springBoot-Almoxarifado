@@ -40,8 +40,4 @@ public class Item {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque", nullable = false)
     private Estoque estoque;
-
-    @ManyToOne
-    @JoinColumn(name = "arquivos")
-    private Arquivo arquivos;
 }

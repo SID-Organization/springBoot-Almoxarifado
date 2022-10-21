@@ -3,6 +3,7 @@ package br.sc.senai.almoxarifado.model.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "campos")
@@ -17,4 +18,7 @@ public class Campo {
     @Column(nullable = false, unique = true)
     private String nomeCampo;
 
+    @OneToMany
+    @JoinColumn(nullable = false)
+    private List<ValorPredefinido> valoresPredefinidos;
 }

@@ -10,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode
 public class Ocorrencia {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
