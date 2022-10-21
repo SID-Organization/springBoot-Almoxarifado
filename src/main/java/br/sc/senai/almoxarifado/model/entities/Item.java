@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "itens")
@@ -33,10 +34,13 @@ public class Item {
     @Column(length = 1, nullable = false)
     private Integer itemDescartavel;
 
+    @Column
+    private File fotoIlustrativa;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque", nullable = false)
-    private Integer idPosicaoEstoque;
+    private Estoque estoque;
 
     @Column(nullable = false)
-    private ArrayList<File> listaDeArquivos;
+    private List<File> listaDeArquivos;
 }

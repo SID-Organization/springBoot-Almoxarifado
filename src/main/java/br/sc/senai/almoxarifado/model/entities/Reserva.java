@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reservas")
@@ -37,7 +38,12 @@ public class Reserva
     private Date dataDevolucao;
 
     @ManyToOne
-    @JoinColumn(name = "pessoa_cpf")
+    @JoinColumn(name = "arquivos")
+    private List<Arquivo> arquivosExtras;
+
+    @ManyToOne
+    @JoinColumn(name = "pessoa_cpf", nullable = false)
     private Pessoa pessoa;
+
 
 }

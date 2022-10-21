@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "estoque_campos")
+@Table(name = "campos")
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @EqualsAndHashCode
 public class Campo {
@@ -19,6 +19,6 @@ public class Campo {
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private Integer tipagemCampo;
+    private String tipagemCampo;
 
 }
