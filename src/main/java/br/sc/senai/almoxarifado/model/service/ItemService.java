@@ -2,11 +2,15 @@ package br.sc.senai.almoxarifado.model.service;
 
 import br.sc.senai.almoxarifado.model.entities.Item;
 import br.sc.senai.almoxarifado.repository.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ItemService {
+    @Autowired
     ItemRepository itemRepository;
 
     public boolean existsById(Long id) {
