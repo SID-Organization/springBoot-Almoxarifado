@@ -38,10 +38,6 @@ public class Reserva
     private Date dataDevolucao;
 
     @ManyToOne
-    @JoinColumn(name = "arquivos")
-    private List<Arquivo> arquivosExtras;
-
-    @ManyToOne
     @JoinColumn(name = "pessoa_cpf", nullable = false)
     private Pessoa pessoa;
 

@@ -41,6 +41,7 @@ public class Item {
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque", nullable = false)
     private Estoque estoque;
 
-    @Column(nullable = false)
-    private List<File> listaDeArquivos;
+    @ManyToOne
+    @JoinColumn(name = "arquivos")
+    private List<Arquivo> arquivosExtras;
 }
