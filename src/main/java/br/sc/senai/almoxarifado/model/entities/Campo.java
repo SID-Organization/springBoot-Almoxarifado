@@ -5,20 +5,20 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ocorrencias")
-@Getter @Setter
+@Table(name = "estoque_campos")
 @AllArgsConstructor @NoArgsConstructor
-@EqualsAndHashCode
-public class Ocorrencia {
+@Getter @Setter @EqualsAndHashCode
+public class Campo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
-    private Long id;
+    private Integer idCampo;
 
+    @Column(nullable = false, unique = true)
+    private String nomeCampo;
+
+    @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private String descricao;
+    private Integer tipagemCampo;
 
-    @ManyToOne
-    @JoinColumn(name = "reservaItem_id", nullable = false)
-    private ReservaItem reservaItem;
 }

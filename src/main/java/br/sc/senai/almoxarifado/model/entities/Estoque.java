@@ -5,20 +5,16 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ocorrencias")
+@Table(name = "estoque")
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode
-public class Ocorrencia {
+public class Estoque {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
-    private Long id;
+    private Integer idEstoque;
 
     @Column(nullable = false)
-    private String descricao;
-
-    @ManyToOne
-    @JoinColumn(name = "reservaItem_id", nullable = false)
-    private ReservaItem reservaItem;
+    private Integer qtdItemEstoque;
 }

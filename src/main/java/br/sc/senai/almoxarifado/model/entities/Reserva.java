@@ -36,4 +36,8 @@ public class Reserva
     @Column(length = 50, nullable = false)
     private Date dataDevolucao;
 
+    @ManyToOne
+    @JoinColumn(name = "pessoa_cpf")
+    private Pessoa pessoa;
+
 }

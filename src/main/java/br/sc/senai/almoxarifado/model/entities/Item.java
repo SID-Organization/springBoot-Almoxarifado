@@ -1,35 +1,34 @@
 package br.sc.senai.almoxarifado.model.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.File;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "tb_item")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Table(name = "itens")
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+@EqualsAndHashCode
 public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
-    private Integer idItem;
+    private Integer id;
 
     @Column(length = 45, nullable = false)
-    private String nomeItem;
+    private String nome;
 
     @Column(length = 50)
-    private String caracteristicaItem;
+    private String caracteristica;
 
     @Column(length = 50, nullable = false)
-    private String classificacaoItem;
+    private String classificacao;
 
     @Column(length = 45)
-    private String detalhesItem;
+    private String detalhes;
 
     @Column(length = 1, nullable = false)
     private Integer itemDescartavel;
