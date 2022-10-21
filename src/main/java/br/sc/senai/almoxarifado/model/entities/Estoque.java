@@ -19,7 +19,7 @@ public class Estoque {
     @Column(nullable = false)
     private Integer qtdItemEstoque;
 
-    @ManyToOne
-    @JoinColumn(name = "id_estoque_campos")
+    @OneToMany
+    @JoinColumn(name = "idEstoqueCampos")
     private List<EstoqueCampos> listaCampos;
 }

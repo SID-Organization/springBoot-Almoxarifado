@@ -17,4 +17,8 @@ public class EstoqueService {
     public List<Estoque> findAll() {
         return estoqueRepository.findAll();
     }
+
+    public Estoque save(Estoque estoque) {
+        return estoqueRepository.save(estoque);
+    }
 }

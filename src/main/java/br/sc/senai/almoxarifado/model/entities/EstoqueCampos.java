@@ -11,6 +11,11 @@ import javax.persistence.*;
 @Getter @Setter @EqualsAndHashCode
 public class EstoqueCampos {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    private Integer idEstoqueCampos;
+
     @ManyToOne
     @JoinColumn(nullable = false, unique = true)
     private Estoque idEstoque;
