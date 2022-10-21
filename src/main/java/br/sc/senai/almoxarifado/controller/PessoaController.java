@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/almoxarifado/pessoa")
+@RequestMapping("/almoxarifado/pessoas")
 public class PessoaController {
 
     @Autowired

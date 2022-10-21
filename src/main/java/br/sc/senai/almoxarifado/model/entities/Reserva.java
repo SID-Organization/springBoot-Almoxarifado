@@ -21,8 +21,8 @@ public class Reserva
     private Integer idReserva;
 
     @ManyToOne
-    @JoinColumn(name = "matriculaPessoa", nullable = false)
-    private String matricula;
+    @JoinColumn(name = "matricula_pessoa", nullable = false)
+    private Pessoa matriculaPessoa;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 2, nullable = false)

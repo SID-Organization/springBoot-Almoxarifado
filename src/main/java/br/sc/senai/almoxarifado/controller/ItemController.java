@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/almoxarifado/item")
+@RequestMapping("/almoxarifado/itens")
 public class ItemController {
 
     ItemService itemService;

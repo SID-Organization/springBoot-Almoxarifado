@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping("/almoxarifado/reserva")
+@RequestMapping("/almoxarifado/reservas")
 public class ReservaController {
 
     @Autowired

@@ -13,7 +13,7 @@ public class Ocorrencia {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String descricao;

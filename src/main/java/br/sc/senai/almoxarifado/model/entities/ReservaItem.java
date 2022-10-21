@@ -21,9 +21,9 @@ public class ReservaItem {
 
     @ManyToOne
     @JoinColumn(name = "id_item")
-    Integer idItem;
+    Item idItem;
 
     @ManyToOne
     @JoinColumn(name = "id_reserva")
-    Integer idReserva;
+    Reserva idReserva;
 }

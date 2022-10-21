@@ -43,5 +43,5 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "arquivos")
-    private List<Arquivo> arquivosExtras;
+    private Arquivo arquivos;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/almoxarifado/reserva-item")
+@RequestMapping("/almoxarifado/reserva-itens")
 public class ReservaItemController {
 
     @Autowired

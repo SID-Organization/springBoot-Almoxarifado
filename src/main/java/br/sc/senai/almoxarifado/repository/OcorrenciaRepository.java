@@ -8,10 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OcorrenciaRepository extends JpaRepository<Ocorrencia, Long> {
-    List<Ocorrencia> findByPessoa(Pessoa pessoa);
+public interface OcorrenciaRepository extends JpaRepository<Ocorrencia, Integer> {
 
-    List<Ocorrencia> findByIdItem(Long idItem);
-
-    List<Ocorrencia> findByIdReserva(Long idReserva);
 }

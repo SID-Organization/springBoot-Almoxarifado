@@ -19,6 +19,6 @@ public class Campo {
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private String tipagemCampo;
+    private TipagemCampos tipagemCampo;
 
 }

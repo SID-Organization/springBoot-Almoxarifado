@@ -1,13 +1,13 @@
 package br.sc.senai.almoxarifado.model.entities;
 
 
-public enum TiposCampos {
+public enum TipagemCampos {
     TEXTO("Texto"),
     NUMERO("Número");
 
     private String nome;
 
-    TiposCampos (String nome){
+    TipagemCampos(String nome){
         this.nome = nome;
     }
 
