@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Item {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
     private Integer id;
 
@@ -32,9 +33,8 @@ public class Item {
     @Column(length = 1, nullable = false)
     private Integer itemDescartavel;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque")
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque", nullable = false)
     private Integer idPosicaoEstoque;
 
     @Column(nullable = false)
