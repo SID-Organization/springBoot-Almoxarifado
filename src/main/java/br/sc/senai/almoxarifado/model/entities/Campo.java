@@ -17,8 +17,4 @@ public class Campo {
     @Column(nullable = false, unique = true)
     private String nomeCampo;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(nullable = false)
-    private TipagemCampos tipagemCampo;
-
 }
