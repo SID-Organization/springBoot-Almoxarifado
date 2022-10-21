@@ -30,16 +30,7 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity<Reserva> save(ReservaDTO reservaDTO) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime dateNow = LocalDateTime.now();
-        LocalDateTime reservaLocalDate = LocalDateTime.ofInstant(
-                reservaDTO.getDataRetirada().toInstant(), ZoneId.systemDefault());
-        if (dateNow.isAfter(reservaLocalDate)){
-
-        }
-
         Reserva reserva = new Reserva();
-
         BeanUtils.copyProperties(reservaDTO, reserva);
         reservaService.save(reserva);
         return ResponseEntity.status(HttpStatus.CREATED).body(reserva);

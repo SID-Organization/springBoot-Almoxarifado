@@ -21,4 +21,8 @@ public class Ocorrencia {
     @ManyToOne
     @JoinColumn(name = "reservaItem_id", nullable = false)
     private ReservaItem reservaItem;
+
+    @ManyToOne
+    @JoinColumn(name = "reservaReserva_id", nullable = false)
+    private ReservaItem reservaReserva;
 }

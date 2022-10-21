@@ -4,6 +4,7 @@ import br.sc.senai.almoxarifado.model.entities.Status;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.validation.constraints.FutureOrPresent;
 import java.util.Date;
 
 @ToString
@@ -12,6 +13,7 @@ public class ReservaDTO {
 
     private String matricula;
     private Status status;
+    @FutureOrPresent
     private Date dataRetirada;
     private Date dataRetirado;
     private Date dataDevolucao;

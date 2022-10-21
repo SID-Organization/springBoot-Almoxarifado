@@ -30,6 +30,10 @@ public class ItemService {
         return itemRepository.findByItemDescartavel(itemDescartavel);
     }
 
+    public Optional<Item> findById(Long aLong) {
+        return itemRepository.findById(aLong);
+    }
+
     public void deleteById(Long isbn) {
         itemRepository.deleteById(isbn);
     }
