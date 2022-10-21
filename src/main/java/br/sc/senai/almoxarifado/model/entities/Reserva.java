@@ -2,6 +2,7 @@ package br.sc.senai.almoxarifado.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,14 +11,16 @@ import java.util.Date;
 @Entity
 @Table(name = "reservas")
 @Getter @Setter
-@AllArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class Reserva
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 40, nullable = false, unique = true)
     private Integer idReserva;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @ManyToOne
+    @JoinColumn(name = "matriculaPessoa", nullable = false)
     private String matricula;
 
     @Enumerated(EnumType.STRING)
