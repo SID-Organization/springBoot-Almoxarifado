@@ -1,16 +1,15 @@
 package br.sc.senai.almoxarifado.model.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.atmosphere.config.service.Get;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "pessoas")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+@EqualsAndHashCode
 public class Pessoa {
 
     @Id
