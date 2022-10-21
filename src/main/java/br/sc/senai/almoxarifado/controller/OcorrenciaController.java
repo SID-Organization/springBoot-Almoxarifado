@@ -1,13 +1,17 @@
 package br.sc.senai.almoxarifado.controller;
 
+import br.sc.senai.almoxarifado.DTO.OcorrenciaDTO;
+import br.sc.senai.almoxarifado.model.entities.Ocorrencia;
 import br.sc.senai.almoxarifado.model.entities.Pessoa;
+import br.sc.senai.almoxarifado.model.service.ItemService;
 import br.sc.senai.almoxarifado.model.service.OcorrenciaService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/almoxarifado/ocorrencia")
@@ -15,6 +19,7 @@ public class OcorrenciaController {
 
     @Autowired
     OcorrenciaService ocorrenciaService;
+
 
     @GetMapping
     public ResponseEntity<Object> findAll() {
@@ -48,5 +53,17 @@ public class OcorrenciaController {
         }
     }
 
+    @PostMapping
+    public ResponseEntity<Object> save(@RequestBody @Valid OcorrenciaDTO ocorrenciaDTO) {
+        ItemService itemService;
+        if (ocorrenciaDTO.getDescricao() == null) {
+            return ResponseEntity.status(400).body("A ocorrência deve ter uma descrição");
+        }
 
+        Ocorrencia ocorrencia;
+        BeanUtils.copyProperties(ocorrenciaDTO, ocorrencia = new Ocorrencia());
+        ocorrenciaService.save(ocorrencia);
+        return ResponseEntity.ok(ocorrencia);
+    }
 }
+
