@@ -17,13 +17,13 @@ public class ReservaItem {
     Integer idReservaItem;
 
     @Column
-    Integer qtdReserva;
+    Integer qtdItensReserva;
 
     @ManyToOne
-    @JoinColumn(name = "id_item")
+    @JoinColumn(name = "id_item", nullable = false)
     Item idItem;
 
     @ManyToOne
-    @JoinColumn(name = "id_reserva")
+    @JoinColumn(name = "id_reserva", nullable = false)
     Reserva idReserva;
 }

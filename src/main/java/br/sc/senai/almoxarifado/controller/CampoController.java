@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/almoxarifado/estoque_campos")
+@RequestMapping("/almoxarifado/campos")
 public class CampoController {
 
     @Autowired
