@@ -20,7 +20,7 @@ public class CampoController {
     CampoService campoService;
 
     @GetMapping
-    public ResponseEntity<List<Campo>> findAll(){
+    public ResponseEntity<List<Campo>> findAll() {
 
         List<Campo> listaCampos = campoService.findAll();
 
@@ -28,7 +28,7 @@ public class CampoController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody @Valid CampoDTO campoDTO){
+    public ResponseEntity<Object> save(@RequestBody @Valid CampoDTO campoDTO) {
         Campo campo = new Campo();
         BeanUtils.copyProperties(campoDTO, campo);
 

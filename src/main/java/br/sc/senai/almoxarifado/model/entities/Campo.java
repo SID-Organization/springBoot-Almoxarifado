@@ -17,8 +17,4 @@ public class Campo {
 
     @Column(nullable = false, unique = true)
     private String nomeCampo;
-
-    @OneToMany
-    @JoinColumn(nullable = false)
-    private List<ValorPredefinido> valoresPredefinidos;
 }

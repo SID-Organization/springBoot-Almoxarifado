@@ -34,12 +34,6 @@ public class EstoqueController {
 
         BeanUtils.copyProperties(estoqueDTO, estoque);
 
-        EstoqueCamposService estoqueCamposService;
-
-        for(EstoqueCampos estoqueCampos : estoque.getListaCampos()){
-
-        }
-
         Estoque estoqueSalvo = estoqueService.save(estoque);
 
         return ResponseEntity.ok(estoqueSalvo);

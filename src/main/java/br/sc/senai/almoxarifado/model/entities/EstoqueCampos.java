@@ -17,11 +17,11 @@ public class EstoqueCampos {
     private Integer idEstoqueCampos;
 
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(name = "idEstoque",nullable = false, unique = true)
     private Estoque idEstoque;
 
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(name = "idCampo", nullable = false, unique = true)
     private Campo idCampo;
 
     @Column(nullable = false)

@@ -20,4 +20,9 @@ public class ValorPredefinido {
 
     @Column(nullable = false)
     private String valorPredefinido;
+
+    @ManyToOne
+    @JoinColumn(name = "id_campo", nullable = false)
+    private Campo idCampo;
+
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EstoqueCamposService {
@@ -17,4 +18,21 @@ public class EstoqueCamposService {
     public List<EstoqueCampos> findAll() {
         return estoqueCamposRepository.findAll();
     }
+
+    public <S extends EstoqueCampos> S save(S entity) {
+        return estoqueCamposRepository.save(entity);
+    }
+
+    public Optional<EstoqueCampos> findById(Integer integer) {
+        return estoqueCamposRepository.findById(integer);
+    }
+
+    public boolean existsById(Integer integer) {
+        return estoqueCamposRepository.existsById(integer);
+    }
+
+    public void deleteById(Integer integer) {
+        estoqueCamposRepository.deleteById(integer);
+    }
+
 }

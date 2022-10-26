@@ -29,7 +29,7 @@ public class Pessoa {
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 2, nullable = false)
+    @Column(nullable = false)
     private Cargo cargo;
     // 1 - Administrador
     // 2 - Atendente

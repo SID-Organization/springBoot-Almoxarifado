@@ -17,5 +17,4 @@ public class ItemDTO {
     private Integer itemDescartavel;
     private Integer idPosicaoEstoque;
     private ArrayList<File> listaDeArquivos;
-
 }

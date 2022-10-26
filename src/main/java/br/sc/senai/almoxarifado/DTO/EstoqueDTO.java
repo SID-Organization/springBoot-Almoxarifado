@@ -5,5 +5,5 @@ import lombok.Setter;
 
 @Getter @Setter
 public class EstoqueDTO {
-    private Integer qtdEstoque;
+    private Integer qtdItemEstoque;
 }
