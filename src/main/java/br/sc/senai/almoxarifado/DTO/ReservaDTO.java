@@ -1,5 +1,6 @@
 package br.sc.senai.almoxarifado.DTO;
 
+import br.sc.senai.almoxarifado.model.entities.Pessoa;
 import br.sc.senai.almoxarifado.model.entities.Status;
 import lombok.Getter;
 import lombok.ToString;
@@ -11,7 +12,7 @@ import java.util.Date;
 @Getter
 public class ReservaDTO {
 
-    private String matricula;
+    private Pessoa matricula;
     private Status status;
     @FutureOrPresent
     private Date dataRetirada;

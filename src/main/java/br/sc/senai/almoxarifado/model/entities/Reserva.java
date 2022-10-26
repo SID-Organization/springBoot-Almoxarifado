@@ -22,24 +22,20 @@ public class Reserva
 
     @ManyToOne
     @JoinColumn(name = "matricula_pessoa", nullable = false)
-    private Pessoa matriculaPessoa;
+    private Pessoa matricula;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 2, nullable = false)
+    @Column(nullable = false)
     private Status status;
 
     @Column(length = 50, nullable = false)
     private Date dataRetirada;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private Date dataRetirado;
 
     @Column(length = 50, nullable = false)
     private Date dataDevolucao;
-
-    @ManyToOne
-    @JoinColumn(name = "pessoa_cpf", nullable = false)
-    private Pessoa pessoa;
 
 
 }

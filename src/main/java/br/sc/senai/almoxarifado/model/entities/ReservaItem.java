@@ -13,10 +13,10 @@ public class ReservaItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(nullable = false)
     Integer idReservaItem;
 
-    @Column
+    @Column(nullable = false)
     Integer qtdItensReserva;
 
     @ManyToOne
@@ -26,4 +26,7 @@ public class ReservaItem {
     @ManyToOne
     @JoinColumn(name = "id_reserva", nullable = false)
     Reserva idReserva;
+
+    @Column
+    Integer devolvido;
 }

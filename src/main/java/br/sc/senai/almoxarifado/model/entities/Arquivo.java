@@ -1,10 +1,13 @@
 package br.sc.senai.almoxarifado.model.entities;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.File;
 
 @Entity
 @Table(name = "arquivos")
+@ToString
 public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,7 +15,7 @@ public class Arquivo {
     private Integer idArquivo;
 
     @Column(nullable = false)
-    private File arquivo;
+    private String arquivo;
 
     @ManyToOne
     @JoinColumn

@@ -31,9 +31,9 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Cargo cargo;
-    // 1 - Administrador
-    // 2 - Atendente
-    // 3 - Assistente
-    // 4 - Professor
+    // Administrador
+    // Atendente
+    // Assistente
+    // Professor
 }
 

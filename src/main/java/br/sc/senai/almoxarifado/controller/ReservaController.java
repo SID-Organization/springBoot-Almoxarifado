@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -29,7 +30,8 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Reserva> save(ReservaDTO reservaDTO) {
+    public ResponseEntity<Reserva> save(@RequestBody @Valid ReservaDTO reservaDTO) {
+        System.out.println(reservaDTO.getMatricula().getNome());
         Reserva reserva = new Reserva();
         BeanUtils.copyProperties(reservaDTO, reserva);
         reservaService.save(reserva);
