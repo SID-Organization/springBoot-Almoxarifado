@@ -23,7 +23,7 @@ public class ReservaItem {
     @JoinColumn(name = "id_item", nullable = false)
     Item idItem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_reserva", nullable = false)
     Reserva idReserva;
 
