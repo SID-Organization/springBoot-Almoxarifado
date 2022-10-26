@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "estoques_has_campos")
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @EqualsAndHashCode
+@ToString
 public class EstoqueCampos {
 
     @Id
@@ -17,11 +18,11 @@ public class EstoqueCampos {
     private Integer idEstoqueCampos;
 
     @ManyToOne
-    @JoinColumn(name = "idEstoque",nullable = false, unique = true)
+    @JoinColumn(name = "idEstoque",nullable = false)
     private Estoque idEstoque;
 
     @ManyToOne
-    @JoinColumn(name = "idCampo", nullable = false, unique = true)
+    @JoinColumn(name = "idCampo", nullable = false)
     private Campo idCampo;
 
     @Column(nullable = false)
