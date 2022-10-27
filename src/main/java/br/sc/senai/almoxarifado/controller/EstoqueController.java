@@ -37,9 +37,11 @@ public class EstoqueController {
 
     @PostMapping
     public ResponseEntity<Estoque> save(@RequestBody @Valid EstoqueDTO estoqueDTO){
+        System.out.println(estoqueDTO);
         Estoque estoque = new Estoque();
 
         BeanUtils.copyProperties(estoqueDTO, estoque);
+        System.out.println(estoque);
 
         Estoque estoqueSalvo = estoqueService.save(estoque);
 

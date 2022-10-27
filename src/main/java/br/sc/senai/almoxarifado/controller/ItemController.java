@@ -22,6 +22,7 @@ public class ItemController {
 
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody @Valid ItemDTO itemDTO) {
+        System.out.println(itemDTO);
         Item item = new Item();
         BeanUtils.copyProperties(itemDTO, item);
         System.out.println(item);
