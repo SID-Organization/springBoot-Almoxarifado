@@ -39,5 +39,5 @@ public class Item {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque", nullable = false)
-    private Estoque estoque;
+    private Estoque idEstoque;
 }

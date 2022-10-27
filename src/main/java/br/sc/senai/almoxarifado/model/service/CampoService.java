@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CampoService {
@@ -19,5 +20,9 @@ public class CampoService {
 
     public Campo save(Campo campo) {
         return campoRepository.save(campo);
+    }
+
+    public Optional<Campo> findById(Integer integer) {
+        return campoRepository.findById(integer);
     }
 }

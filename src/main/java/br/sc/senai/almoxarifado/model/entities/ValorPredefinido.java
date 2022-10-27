@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "valor_predefinido")
+@Table(name = "valores_campos")
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
 public class ValorPredefinido {
@@ -24,5 +24,4 @@ public class ValorPredefinido {
     @ManyToOne
     @JoinColumn(name = "id_campo", nullable = false)
     private Campo idCampo;
-
 }
