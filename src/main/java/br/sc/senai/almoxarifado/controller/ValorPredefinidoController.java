@@ -31,12 +31,12 @@ public class ValorPredefinidoController {
     }
 
     @PostMapping()
-    public ResponseEntity<ValorPredefinido> save(@RequestBody ValorPredefinidoDTO valorPredefinidoDTO){
-        ValorPredefinido valorPredefinido = new ValorPredefinido();
-        BeanUtils.copyProperties(valorPredefinidoDTO, valorPredefinido);
-        System.out.println("1 " + valorPredefinidoDTO.getIdCampo());
-        ValorPredefinido valorPredefinidoSalvo = valorPredefinidoService.save(valorPredefinido);
-        System.out.println("2 " + valorPredefinidoSalvo.getIdCampo());
-        return ResponseEntity.ok(valorPredefinidoSalvo);
+    public ResponseEntity<Object> save(@RequestBody ValorPredefinidoDTO valorPredefinidoDTO){
+//        ValorPredefinido valorPredefinido = new ValorPredefinido();
+//        BeanUtils.copyProperties(valorPredefinidoDTO, valorPredefinido);
+//        System.out.println("1 " + valorPredefinidoDTO.getIdCampo());
+//        ValorPredefinido valorPredefinidoSalvo = valorPredefinidoService.save(valorPredefinido);
+//        System.out.println("2 " + valorPredefinidoSalvo.getIdCampo());
+        return ResponseEntity.ok("YOO");
     }
 }
