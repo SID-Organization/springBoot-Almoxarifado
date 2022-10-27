@@ -6,5 +6,4 @@ import lombok.Getter;
 @Getter
 public class ValorPredefinidoDTO {
     private String valorPredefinido;
-    private Campo idCampo;
 }
