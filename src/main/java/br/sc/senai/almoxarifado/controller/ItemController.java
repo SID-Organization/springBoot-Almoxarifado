@@ -24,8 +24,11 @@ public class ItemController {
     public ResponseEntity<Object> save(@RequestBody @Valid ItemDTO itemDTO) {
         Item item = new Item();
         BeanUtils.copyProperties(itemDTO, item);
-        itemService.save(item);
-        return ResponseEntity.status(HttpStatus.CREATED).body(item);
+        System.out.println(item);
+
+        Item itemSalvo = itemService.save(item);
+
+        return ResponseEntity.ok(itemSalvo);
     }
 
     @GetMapping
