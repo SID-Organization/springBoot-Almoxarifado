@@ -18,5 +18,4 @@ public class Estoque {
 
     @Column(nullable = false)
     private Integer qtdItemEstoque;
-
 }

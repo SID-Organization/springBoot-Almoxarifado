@@ -14,12 +14,12 @@ import java.util.ArrayList;
 @Getter
 public class ItemDTO {
     @NotBlank
-    private String nomeItem;
-    private String caracteristicaItem;
-    private String classificacaoItem;
-    private String detalhesItem;
+    private String nome;
+    private String caracteristica;
+    private String classificacao;
+    private String detalhes;
     @NotNull
-    private boolean itemDescartavel;
+    private Integer itemDescartavel;
     private Estoque idEstoque;
     private File fotoIlustrativa;
 //    private ArrayList<File> listaDeArquivos;
