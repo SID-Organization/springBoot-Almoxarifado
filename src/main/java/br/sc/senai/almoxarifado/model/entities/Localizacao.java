@@ -1,30 +1,30 @@
 package br.sc.senai.almoxarifado.model.entities;
 
 import lombok.*;
-import org.atmosphere.config.service.Get;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "estoques_has_campos")
+@Table(name = "localizacao")
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @EqualsAndHashCode
 @ToString
-public class EstoqueCampos {
+public class Localizacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer idEstoqueCampos;
+    private Integer idLocalizacao;
 
     @ManyToOne
-    @JoinColumn(name = "idEstoque",nullable = false)
-    private Estoque idEstoque;
+    @JoinColumn(name = "idEspacoOrganizacional", nullable = false)
+    private EspacoOrganizacional idEspacoOrganizacional;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idCampo", nullable = false)
     private Campo idCampo;
 
-    @Column(nullable = false)
-    private String valorCampo;
+    @OneToOne
+    @JoinColumn(name = "idValorPredefinido", nullable = false)
+    private ValorPredefinido idValorPredefinido;
 }

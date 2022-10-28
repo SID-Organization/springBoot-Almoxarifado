@@ -15,6 +15,7 @@ import java.util.List;
 public class CampoDTO {
     @NotBlank
     private String nomeCampo;
+
     @NotNull
     private List<ValorPredefinido> valores;
 }

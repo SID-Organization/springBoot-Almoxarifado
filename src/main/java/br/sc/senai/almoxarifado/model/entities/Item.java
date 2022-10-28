@@ -4,15 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "itens")
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode
-@ToString
 public class Item {
 
     @Id
@@ -39,6 +36,6 @@ public class Item {
     private File fotoIlustrativa;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEstoque", nullable = false)
-    private Estoque idEstoque;
+    @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEspacoOrganizacional", nullable = false)
+    private EspacoOrganizacional idEspacoOrganizacional;
 }

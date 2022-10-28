@@ -3,6 +3,7 @@ package br.sc.senai.almoxarifado.model.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
