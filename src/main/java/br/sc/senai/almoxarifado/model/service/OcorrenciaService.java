@@ -18,4 +18,20 @@ public class OcorrenciaService {
     public List<Ocorrencia> findAll() {
         return ocorrenciaRepository.findAll();
     }
+
+    public <S extends Ocorrencia> S save(S entity) {
+        return ocorrenciaRepository.save(entity);
+    }
+
+    public Optional<Ocorrencia> findById(Integer integer) {
+        return ocorrenciaRepository.findById(integer);
+    }
+
+    public boolean existsById(Integer integer) {
+        return ocorrenciaRepository.existsById(integer);
+    }
+
+    public void deleteById(Integer integer) {
+        ocorrenciaRepository.deleteById(integer);
+    }
 }

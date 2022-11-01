@@ -55,17 +55,16 @@ public class OcorrenciaController {
 //        }
 //    }
 //
-//    @PostMapping
-//    public ResponseEntity<Object> save(@RequestBody @Valid OcorrenciaDTO ocorrenciaDTO) {
-//        ItemService itemService;
-//        if (ocorrenciaDTO.getDescricao() == null) {
-//            return ResponseEntity.status(400).body("A ocorrência deve ter uma descrição");
-//        }
-//
-//        Ocorrencia ocorrencia;
-//        BeanUtils.copyProperties(ocorrenciaDTO, ocorrencia = new Ocorrencia());
-//        ocorrenciaService.save(ocorrencia);
-//        return ResponseEntity.ok(ocorrencia);
-//    }
+    @PostMapping
+    public ResponseEntity<Object> save(@RequestBody @Valid OcorrenciaDTO ocorrenciaDTO) {
+        if (ocorrenciaDTO.getDescricao() == null) {
+            return ResponseEntity.status(400).body("A ocorrência deve ter uma descrição");
+        }
+
+        Ocorrencia ocorrencia;
+        BeanUtils.copyProperties(ocorrenciaDTO, ocorrencia = new Ocorrencia());
+        Ocorrencia ocorrenciaSalva = ocorrenciaService.save(ocorrencia);
+        return ResponseEntity.ok(ocorrenciaSalva);
+    }
 }
 
