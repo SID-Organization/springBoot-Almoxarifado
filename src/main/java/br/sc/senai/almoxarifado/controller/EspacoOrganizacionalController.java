@@ -3,8 +3,10 @@ package br.sc.senai.almoxarifado.controller;
 import br.sc.senai.almoxarifado.DTO.EspacoOrganizacionalDTO;
 import br.sc.senai.almoxarifado.model.entities.EspacoOrganizacional;
 import br.sc.senai.almoxarifado.model.entities.Localizacao;
+import br.sc.senai.almoxarifado.model.entities.Reserva;
 import br.sc.senai.almoxarifado.model.service.LocalizacaoService;
 import br.sc.senai.almoxarifado.model.service.EspacoOrganizacionalService;
+import org.atmosphere.config.service.Get;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/almoxarifado/estoques")
+@RequestMapping("/almoxarifado/espaco-organizacional")
 public class EspacoOrganizacionalController {
 
     @Autowired
@@ -37,9 +39,15 @@ public class EspacoOrganizacionalController {
     public ResponseEntity<EspacoOrganizacional> save(@RequestBody @Valid EspacoOrganizacionalDTO espacoOrganizacionalDTO){
         EspacoOrganizacional espacoOrganizacional = new EspacoOrganizacional();
 
+        System.out.println(espacoOrganizacionalDTO);
+
         BeanUtils.copyProperties(espacoOrganizacionalDTO, espacoOrganizacional);
 
+        System.out.println(espacoOrganizacional);
+
         EspacoOrganizacional espacoOrganizacionalSalvo = espacoOrganizacionalService.save(espacoOrganizacional);
+
+        System.out.println(espacoOrganizacionalSalvo.getIdEspacoOrganizacional());
 
         for (Localizacao localizacao : espacoOrganizacionalDTO.getLocalizacoes()) {
             localizacao.setIdEspacoOrganizacional(espacoOrganizacionalSalvo);
@@ -53,11 +61,12 @@ public class EspacoOrganizacionalController {
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Integer id){
-        Optional<EspacoOrganizacional> estoque = espacoOrganizacionalService.findById(id);
-        if (estoque.isEmpty()) {
+        Optional<EspacoOrganizacional> espacoOrganizacional = espacoOrganizacionalService.findById(id);
+        System.out.println("passou aqui");
+        if (espacoOrganizacional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Não foi encontrado estoque com o id " + id + ".");
+                    .body("Não foi encontrado reserva com o id " + id + ".");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(localizacaoService.findByIdLocalizacao(estoque.get()));
+        return ResponseEntity.status(HttpStatus.OK).body(localizacaoService.findByEspacoOrganizacional(espacoOrganizacional.get()));
     }
 }

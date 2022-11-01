@@ -15,8 +15,8 @@ public class LocalizacaoService {
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
 
-    public List<Localizacao> findByIdLocalizacao(EspacoOrganizacional idEspacoOrganizacional) {
-        return localizacaoRepository.findByIdLocalizacao(idEspacoOrganizacional);
+    public List<Localizacao> findByEspacoOrganizacional(EspacoOrganizacional espacoOrganizacional) {
+        return localizacaoRepository.findByIdEspacoOrganizacional(espacoOrganizacional);
     }
 
     public List<Localizacao> findAll() {

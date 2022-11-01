@@ -13,21 +13,21 @@ import java.io.File;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
 
     @Column(length = 45, nullable = false)
-    private String nome;
+    private String nomeItem;
 
     @Column(length = 50)
-    private String caracteristica;
+    private String caracteristicaItem;
 
     @Column(length = 50, nullable = false)
-    private String classificacao;
+    private String classificacaoItem;
 
     @Column(length = 45)
-    private String detalhes;
+    private String detalhesItem;
 
     @Column(length = 1, nullable = false)
     private Integer itemDescartavel;
@@ -35,7 +35,7 @@ public class Item {
     @Column
     private File fotoIlustrativa;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEspacoOrganizacional", nullable = false)
     private EspacoOrganizacional idEspacoOrganizacional;
 }

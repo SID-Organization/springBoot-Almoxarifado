@@ -27,7 +27,7 @@ public class ItemService {
     }
 
     public List<Item> findByClassificacao(String classificacao) {
-        return itemRepository.findByClassificacao(classificacao);
+        return itemRepository.findByClassificacaoItem(classificacao);
     }
 
     public List<Item> findByItemDescartavel(Integer itemDescartavel) {

@@ -22,8 +22,8 @@ public class EspacoOrganizacionalService {
         return espacoOrganizacionalRepository.save(espacoOrganizacional);
     }
 
-    public Optional<EspacoOrganizacional> findById(Integer integer) {
-        return espacoOrganizacionalRepository.findById(integer);
+    public Optional<EspacoOrganizacional> findById(Integer id) {
+        return espacoOrganizacionalRepository.findById(id);
     }
 
     public boolean existsById(Integer integer) {

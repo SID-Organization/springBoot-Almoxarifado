@@ -16,7 +16,7 @@ import java.util.List;
 public class Reserva
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 40, nullable = false, unique = true)
     private Integer idReserva;
 

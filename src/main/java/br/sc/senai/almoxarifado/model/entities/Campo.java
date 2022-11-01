@@ -12,7 +12,7 @@ import java.util.List;
 @Getter @Setter @EqualsAndHashCode
 public class Campo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer idCampo;
 

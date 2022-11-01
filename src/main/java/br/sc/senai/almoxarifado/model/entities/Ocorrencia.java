@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Ocorrencia {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
 

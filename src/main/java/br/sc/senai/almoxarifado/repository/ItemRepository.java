@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    List<Item> findByClassificacao(String classificacao);
+    List<Item> findByClassificacaoItem(String classificacao);
 
     List<Item> findByItemDescartavel(Integer itemDescartavel);
 }

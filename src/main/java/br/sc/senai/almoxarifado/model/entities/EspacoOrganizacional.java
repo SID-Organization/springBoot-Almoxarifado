@@ -22,6 +22,6 @@ public class EspacoOrganizacional {
     @Column(nullable = false)
     private String nomeEspacoOrganizacional;
 
-    @OneToMany(mappedBy = "idEspacoOrganizacional", cascade = CascadeType.ALL)
-    private List<Localizacao> localizacoes;
+//    @OneToMany(mappedBy = "idEspacoOrganizacional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Localizacao> localizacoes;
 }

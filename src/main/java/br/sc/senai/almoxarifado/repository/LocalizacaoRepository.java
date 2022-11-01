@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface LocalizacaoRepository extends JpaRepository<Localizacao, Integer> {
-    List<Localizacao> findByIdLocalizacao(EspacoOrganizacional idEspacoOrganizacional);
+    List<Localizacao> findByIdEspacoOrganizacional(EspacoOrganizacional idEspacoOrganizacional);
 }

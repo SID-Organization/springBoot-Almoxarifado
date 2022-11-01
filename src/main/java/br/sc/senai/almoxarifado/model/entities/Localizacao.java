@@ -1,5 +1,6 @@
 package br.sc.senai.almoxarifado.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,12 +13,12 @@ import javax.persistence.*;
 public class Localizacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer idLocalizacao;
 
     @ManyToOne
-    @JoinColumn(name = "idEspacoOrganizacional", nullable = false)
+    @JoinColumn(name = "idEspacoOrganizacional")
     private EspacoOrganizacional idEspacoOrganizacional;
 
     @OneToOne
