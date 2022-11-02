@@ -29,8 +29,8 @@ public class Item {
     @Column(length = 45)
     private String detalhesItem;
 
-    @Column(length = 1, nullable = false)
-    private Integer itemDescartavel;
+    @Column(nullable = false)
+    private Boolean itemDescartavel;
 
     @Column
     private File fotoIlustrativa;

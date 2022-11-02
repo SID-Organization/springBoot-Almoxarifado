@@ -3,6 +3,7 @@ package br.sc.senai.almoxarifado.controller;
 import br.sc.senai.almoxarifado.DTO.ItemDTO;
 import br.sc.senai.almoxarifado.model.entities.Item;
 import br.sc.senai.almoxarifado.model.service.ItemService;
+import br.sc.senai.almoxarifado.model.utils.ItemUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,22 @@ public class ItemController {
         itemService.save(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/teste")
+    public ResponseEntity<Object> test(
+            @RequestParam("item") @Valid String itemJson
+    ) {
+
+        System.out.println(itemJson);
+
+        ItemUtil itemUtil = new ItemUtil();
+
+        Item item = itemUtil.convertJsonToModel(itemJson);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(item);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<Item>> findAll() {
