@@ -25,4 +25,8 @@ public class CampoService {
     public Optional<Campo> findById(Integer integer) {
         return campoRepository.findById(integer);
     }
+
+    public Optional<Campo> findByNomeCampo(String nomeCampo) {
+        return campoRepository.findByNomeCampo(nomeCampo);
+    }
 }

@@ -16,9 +16,11 @@ public class Ocorrencia {
     @Column(nullable = false, unique = true)
     private Integer id;
 
+    @NonNull
     @Column(nullable = false)
     private String descricao;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "reservaItem_id", nullable = false)
     private ReservaItem reservaItem;

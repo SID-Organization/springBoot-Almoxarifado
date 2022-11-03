@@ -36,7 +36,9 @@ public class ReservaController {
     public ResponseEntity<Reserva> save(@RequestBody @Valid ReservaDTO reservaDTO) {
         Reserva reserva = new Reserva();
         BeanUtils.copyProperties(reservaDTO, reserva);
+        reserva.setStatus(Status.ATIVO);
         Reserva reservaSalva = reservaService.save(reserva);
+
         for (ReservaItem reservaItem : reservaDTO.getReservaItem()) {
             reservaItem.setIdReserva(reservaSalva);
             reservaItemService.save(reservaItem);

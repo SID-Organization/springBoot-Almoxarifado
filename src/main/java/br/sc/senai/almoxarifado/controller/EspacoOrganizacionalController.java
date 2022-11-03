@@ -30,32 +30,26 @@ public class EspacoOrganizacionalController {
     @GetMapping
     public ResponseEntity<List<EspacoOrganizacional>> findAll(){
 
-        List<EspacoOrganizacional> listaEspacoOrganizacionals = espacoOrganizacionalService.findAll();
+        List<EspacoOrganizacional> listaEspacoOrganizacionais = espacoOrganizacionalService.findAll();
 
-        return ResponseEntity.ok(listaEspacoOrganizacionals);
+        if (listaEspacoOrganizacionais.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+
+        return ResponseEntity.ok(listaEspacoOrganizacionais);
     }
 
     @PostMapping
     public ResponseEntity<EspacoOrganizacional> save(@RequestBody @Valid EspacoOrganizacionalDTO espacoOrganizacionalDTO){
         EspacoOrganizacional espacoOrganizacional = new EspacoOrganizacional();
 
-        System.out.println(espacoOrganizacionalDTO);
-
         BeanUtils.copyProperties(espacoOrganizacionalDTO, espacoOrganizacional);
-
-        System.out.println(espacoOrganizacional);
-
         EspacoOrganizacional espacoOrganizacionalSalvo = espacoOrganizacionalService.save(espacoOrganizacional);
-
-        System.out.println(espacoOrganizacionalSalvo.getIdEspacoOrganizacional());
 
         for (Localizacao localizacao : espacoOrganizacionalDTO.getLocalizacoes()) {
             localizacao.setIdEspacoOrganizacional(espacoOrganizacionalSalvo);
             localizacaoService.save(localizacao);
         }
-
-        System.out.println(espacoOrganizacionalSalvo);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(espacoOrganizacional);
     }
 

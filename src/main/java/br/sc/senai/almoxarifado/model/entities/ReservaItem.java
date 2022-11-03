@@ -16,6 +16,7 @@ public class ReservaItem {
     @Column(nullable = false)
     Integer idReservaItem;
 
+    @NonNull
     @Column(nullable = false)
     Integer qtdItensReserva;
 

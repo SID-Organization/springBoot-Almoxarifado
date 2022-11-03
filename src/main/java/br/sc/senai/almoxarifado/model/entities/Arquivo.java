@@ -18,9 +18,11 @@ public class Arquivo {
     @Column(nullable = false, unique = true)
     private Integer idArquivo;
 
+    @NonNull
     @Column(nullable = false)
     private String arquivo;
 
+    @NonNull
     @ManyToOne
     @JoinColumn
     private Item idItem;

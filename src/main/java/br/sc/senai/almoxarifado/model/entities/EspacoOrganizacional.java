@@ -16,12 +16,12 @@ public class EspacoOrganizacional {
     @Column(nullable = false, unique = true)
     private Integer idEspacoOrganizacional;
 
+    @NonNull
     @Column(nullable = false)
     private Integer qtdItemEspacoOrganizacional;
 
+    @NonNull
     @Column(nullable = false)
     private String nomeEspacoOrganizacional;
 
-//    @OneToMany(mappedBy = "idEspacoOrganizacional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Localizacao> localizacoes;
 }

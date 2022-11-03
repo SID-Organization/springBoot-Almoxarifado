@@ -26,6 +26,10 @@ public class ArquivoController {
     public ResponseEntity<List> findAll() {
         List listaArquivos = arquivoService.findAll();
 
+        if (listaArquivos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+
         return ResponseEntity.ok(listaArquivos);
     }
 

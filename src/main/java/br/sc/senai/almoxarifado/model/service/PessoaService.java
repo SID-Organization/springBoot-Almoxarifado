@@ -42,28 +42,12 @@ public class PessoaService {
         return pessoaRepository.findById(matricula);
     }
 
-    public Optional<Pessoa> findByMatricula(String matricula) {
-        return pessoaRepository.findByMatricula(matricula);
-    }
-
-    public boolean existsById(Long aLong) {
-        return pessoaRepository.existsById(aLong);
-    }
-
-    public boolean existsByMatricula(String matricula) {
-        return pessoaRepository.existsByMatricula(matricula);
+    public boolean existsById(Long matricula) {
+        return pessoaRepository.existsById(matricula);
     }
 
     public void deleteById(Long aLong) {
         pessoaRepository.deleteById(aLong);
-    }
-
-    public void deleteByMatricula(String matricula) {
-        pessoaRepository.deleteByMatricula(matricula);
-    }
-
-    public void delete(Pessoa entity) {
-        pessoaRepository.delete(entity);
     }
 
     public <S extends Pessoa> Page<S> findAll(Example<S> example, Pageable pageable) {

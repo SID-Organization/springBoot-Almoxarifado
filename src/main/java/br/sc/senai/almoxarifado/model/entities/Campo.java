@@ -16,6 +16,7 @@ public class Campo {
     @Column(nullable = false, unique = true)
     private Integer idCampo;
 
+    @NonNull
     @Column(nullable = false, unique = true)
     private String nomeCampo;
 }

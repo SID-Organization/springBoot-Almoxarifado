@@ -23,13 +23,19 @@ public class PessoaController {
     PessoaService pessoaService;
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>> findAll(Sort sort) {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll(sort));
+    public ResponseEntity<Object> findAll(Sort sort) {
+        List<Pessoa> listaPessoas = pessoaService.findAll(sort);
+
+        if (listaPessoas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma pessoa encontrada");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(listaPessoas);
     }
 
     @GetMapping("/{matricula}")
-    public ResponseEntity<Object> findById(@PathVariable(value = "matricula") String matricula) {
-        Optional<Pessoa> pessoa = pessoaService.findByMatricula(matricula);
+    public ResponseEntity<Object> findById(@PathVariable(value = "matricula") Long matricula) {
+        Optional<Pessoa> pessoa = pessoaService.findById(matricula);
         if (pessoa.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado pessoa com a matricula " + matricula);
         } else {
@@ -38,9 +44,9 @@ public class PessoaController {
     }
 
     @DeleteMapping("/{matricula}")
-    public ResponseEntity<Object> deleteById(@PathVariable(value = "matricula") String matricula) {
-        if (pessoaService.existsByMatricula(matricula)) {
-            pessoaService.deleteByMatricula(matricula);
+    public ResponseEntity<Object> deleteById(@PathVariable(value = "matricula") Long matricula) {
+        if (pessoaService.existsById(matricula)) {
+            pessoaService.deleteById(matricula);
             return ResponseEntity.status(HttpStatus.OK).body("Pessoa com o matricula " + matricula + " foi deletado com sucesso");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado pessoa com o matricula " + matricula);
@@ -49,7 +55,7 @@ public class PessoaController {
 
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody @Valid PessoaDTO pessoaDTO){
-        if (pessoaService.existsByMatricula(pessoaDTO.getMatricula())) {
+        if (pessoaService.existsById(pessoaDTO.getMatricula())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Pessoa com o matricula " + pessoaDTO.getMatricula() + " já existe");
         }
 
@@ -60,8 +66,8 @@ public class PessoaController {
     }
 
     @PutMapping("/{matricula}")
-    public ResponseEntity<Object> update(@PathVariable(value = "matricula") String matricula, @RequestBody @Valid PessoaDTO pessoaDTO) {
-        Optional<Pessoa> pessoaOptional = pessoaService.findByMatricula(matricula);
+    public ResponseEntity<Object> update(@PathVariable(value = "matricula") Long matricula, @RequestBody @Valid PessoaDTO pessoaDTO) {
+        Optional<Pessoa> pessoaOptional = pessoaService.findById(matricula);
         if (pessoaOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado pessoa com o matricula " + matricula);
         }
@@ -69,7 +75,7 @@ public class PessoaController {
         Pessoa pessoa = pessoaOptional.get();
         BeanUtils.copyProperties(pessoaDTO, pessoa);
         pessoaService.save(pessoa);
-        return ResponseEntity.status(HttpStatus.OK).body("Pessoa com o matricula " + matricula + " foi atualizado com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body("Pessoa com o matricula " + matricula + " foi atualizada com sucesso");
     }
 
 }

@@ -17,14 +17,17 @@ public class Localizacao {
     @Column
     private Integer idLocalizacao;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "idEspacoOrganizacional")
     private EspacoOrganizacional idEspacoOrganizacional;
 
+    @NonNull
     @OneToOne
     @JoinColumn(name = "idCampo", nullable = false)
     private Campo idCampo;
 
+    @NonNull
     @OneToOne
     @JoinColumn(name = "idValorPredefinido", nullable = false)
     private ValorPredefinido idValorPredefinido;

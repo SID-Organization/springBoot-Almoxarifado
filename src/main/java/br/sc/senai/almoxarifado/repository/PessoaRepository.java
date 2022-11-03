@@ -8,7 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
-    boolean existsByMatricula(String matricula);
-    void deleteByMatricula(String matricula);
-    Optional<Pessoa> findByMatricula(String matricula);
 }

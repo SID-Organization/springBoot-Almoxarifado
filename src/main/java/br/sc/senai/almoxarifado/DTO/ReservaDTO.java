@@ -15,7 +15,6 @@ import java.util.List;
 public class ReservaDTO {
 
     private Pessoa matricula;
-    private Status status;
     @FutureOrPresent
     private Date dataRetirada;
     private Date dataRetirado;

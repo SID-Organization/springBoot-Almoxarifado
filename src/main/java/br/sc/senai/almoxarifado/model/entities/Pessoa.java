@@ -12,22 +12,28 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class Pessoa {
 
+    @NonNull
     @Id
     @Column(length = 50, nullable = false, unique = true)
-    private String matricula;
+    private Long matricula;
 
+    @NonNull
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @NonNull
     @Column(length = 50, nullable = false)
     private String sobrenome;
 
+    @NonNull
     @Column(length = 50, nullable = false, unique = true)
     private String email;
 
+    @NonNull
     @Column(length = 50, nullable = false)
     private String senha;
 
+    @NonNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Cargo cargo;

@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 @Getter
 public class PessoaDTO {
-    private String matricula;
+    private Long matricula;
     private String nome;
     private String sobrenome;
     private String email;
