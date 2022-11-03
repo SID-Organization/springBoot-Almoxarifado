@@ -1,8 +1,10 @@
 package br.sc.senai.almoxarifado.controller;
 
 import br.sc.senai.almoxarifado.DTO.ItemDTO;
+import br.sc.senai.almoxarifado.model.entities.Arquivo;
 import br.sc.senai.almoxarifado.model.entities.EspacoOrganizacional;
 import br.sc.senai.almoxarifado.model.entities.Item;
+import br.sc.senai.almoxarifado.model.service.ArquivoService;
 import br.sc.senai.almoxarifado.model.service.EspacoOrganizacionalService;
 import br.sc.senai.almoxarifado.model.service.ItemService;
 import br.sc.senai.almoxarifado.model.utils.ItemUtil;
@@ -25,13 +27,17 @@ public class ItemController {
     ItemService itemService;
 
     @Autowired
+    ArquivoService arquivoService;
+
+    @Autowired
     EspacoOrganizacionalService espacoOrganizacionalService;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<Object> save(
             @RequestParam("item") @Valid String itemJson,
-            @RequestParam("image") MultipartFile file
+            @RequestParam("image") MultipartFile file,
+            @RequestParam("additionalImages") MultipartFile[] additionalImages
     ) {
         ItemUtil itemUtil = new ItemUtil();
 
@@ -43,7 +49,21 @@ public class ItemController {
             throw new RuntimeException("Erro ao converter a imagem");
         }
 
-        itemService.save(item);
+        Item itemSalvo = itemService.save(item);
+
+        try {
+            for (MultipartFile additionalImage : additionalImages) {
+                Arquivo arquivo = new Arquivo();
+                arquivo.setNomeArquivo(additionalImage.getOriginalFilename());
+                arquivo.setTipoArquivo(additionalImage.getContentType());
+                arquivo.setArquivo(additionalImage.getBytes());
+                arquivo.setIdItem(itemSalvo);
+
+                arquivoService.save(arquivo);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao converter a imagem");
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }

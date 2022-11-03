@@ -8,6 +8,7 @@ import java.io.File;
 @Entity
 @Table(name = "arquivos")
 @AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @ToString
 @Setter
@@ -15,13 +16,19 @@ import java.io.File;
 public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
     private Integer idArquivo;
 
-    @Column(nullable = false)
-    private String arquivo;
+    @NonNull
+    private String nomeArquivo;
+
+    @NonNull
+    private String tipoArquivo;
+
+    @NonNull
+    @Lob
+    private byte[] arquivo;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "idItem")
     private Item idItem;
 }
