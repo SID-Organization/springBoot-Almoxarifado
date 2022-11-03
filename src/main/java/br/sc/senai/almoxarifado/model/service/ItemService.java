@@ -41,5 +41,4 @@ public class ItemService {
     public void deleteById(Long isbn) {
         itemRepository.deleteById(isbn);
     }
-
 }
