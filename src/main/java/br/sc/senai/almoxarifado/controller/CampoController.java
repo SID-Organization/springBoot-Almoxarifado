@@ -65,4 +65,25 @@ public class CampoController {
         return ResponseEntity.ok(campoSalvo);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody @Valid CampoDTO campoDTO) {
+
+        Optional<Campo> campo = campoService.findById(id);
+
+        if (campo.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        BeanUtils.copyProperties(campoDTO, campo.get());
+        Campo campoSalvo = campoService.save(campo.get());
+
+        for(ValorPredefinido valor : campoDTO.getValores()){
+            System.out.println(valor.getValorPredefinido());
+            valor.setIdCampo(campoSalvo);
+            valorPredefinidoService.save(valor);
+        }
+
+        return ResponseEntity.ok(campoSalvo);
+    }
+
 }

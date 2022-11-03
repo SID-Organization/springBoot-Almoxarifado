@@ -36,8 +36,8 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Object> save(
             @RequestParam("item") @Valid String itemJson,
-            @RequestParam("image") MultipartFile file,
-            @RequestParam("additionalImages") MultipartFile[] additionalImages
+            @RequestParam("image") MultipartFile file
+//            @RequestParam("additionalImages") MultipartFile[] additionalImages
     ) {
         ItemUtil itemUtil = new ItemUtil();
 
@@ -51,19 +51,19 @@ public class ItemController {
 
         Item itemSalvo = itemService.save(item);
 
-        try {
-            for (MultipartFile additionalImage : additionalImages) {
-                Arquivo arquivo = new Arquivo();
-                arquivo.setNomeArquivo(additionalImage.getOriginalFilename());
-                arquivo.setTipoArquivo(additionalImage.getContentType());
-                arquivo.setArquivo(additionalImage.getBytes());
-                arquivo.setIdItem(itemSalvo);
-
-                arquivoService.save(arquivo);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao converter a imagem");
-        }
+//        try {
+//            for (MultipartFile additionalImage : additionalImages) {
+//                Arquivo arquivo = new Arquivo();
+//                arquivo.setNomeArquivo(additionalImage.getOriginalFilename());
+//                arquivo.setTipoArquivo(additionalImage.getContentType());
+//                arquivo.setArquivo(additionalImage.getBytes());
+//                arquivo.setIdItem(itemSalvo);
+//
+//                arquivoService.save(arquivo);
+//            }
+//        } catch (Exception e) {
+//            throw new RuntimeException("Erro ao converter a imagem");
+//        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
