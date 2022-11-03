@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,13 +30,20 @@ public class ItemController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<Object> save(
-            @RequestParam("item") @Valid String itemJson
+            @RequestParam("item") @Valid String itemJson,
+            @RequestParam("image") MultipartFile file
     ) {
         ItemUtil itemUtil = new ItemUtil();
 
         Item item = itemUtil.convertJsonToModel(itemJson);
 
-          itemService.save(item);
+        try {
+            item.setFotoIlustrativa(file.getBytes());
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao converter a imagem");
+        }
+
+        itemService.save(item);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }

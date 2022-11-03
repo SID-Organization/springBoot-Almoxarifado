@@ -33,7 +33,8 @@ public class Item {
     private Boolean itemDescartavel;
 
     @Column
-    private File fotoIlustrativa;
+    @Lob
+    private byte[] fotoIlustrativa;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEspacoOrganizacional", nullable = false)

@@ -12,7 +12,7 @@ import java.util.List;
 @EqualsAndHashCode
 public class EspacoOrganizacional {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer idEspacoOrganizacional;
 
@@ -21,7 +21,4 @@ public class EspacoOrganizacional {
 
     @Column(nullable = false)
     private String nomeEspacoOrganizacional;
-
-//    @OneToMany(mappedBy = "idEspacoOrganizacional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Localizacao> localizacoes;
 }
