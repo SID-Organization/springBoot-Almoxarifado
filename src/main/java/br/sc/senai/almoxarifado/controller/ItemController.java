@@ -1,8 +1,11 @@
 package br.sc.senai.almoxarifado.controller;
 
 import br.sc.senai.almoxarifado.DTO.ItemDTO;
+import br.sc.senai.almoxarifado.model.entities.EspacoOrganizacional;
 import br.sc.senai.almoxarifado.model.entities.Item;
+import br.sc.senai.almoxarifado.model.service.EspacoOrganizacionalService;
 import br.sc.senai.almoxarifado.model.service.ItemService;
+import br.sc.senai.almoxarifado.model.utils.ItemUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,14 +23,24 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
+    @Autowired
+    EspacoOrganizacionalService espacoOrganizacionalService;
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody @Valid ItemDTO itemDTO) {
-        Item item = new Item();
-        BeanUtils.copyProperties(itemDTO, item);
-        itemService.save(item);
+    public ResponseEntity<Object> save(
+            @RequestParam("item") @Valid String itemJson
+    ) {
+        ItemUtil itemUtil = new ItemUtil();
+
+        Item item = itemUtil.convertJsonToModel(itemJson);
+
+          itemService.save(item);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<Object> findAll() {
 
