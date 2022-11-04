@@ -9,8 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "itens")
-@Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 public class Item {
 
@@ -34,28 +36,14 @@ public class Item {
     @Column(nullable = false)
     private Boolean itemDescartavel;
 
+    @Column(nullable = false)
+    private Integer quantidadeItem;
+
     @Column
     @Lob
     private byte[] fotoIlustrativa;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private List<Arquivo> arquivosAdicionais;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEspacoOrganizacional", nullable = false)
     private EspacoOrganizacional idEspacoOrganizacional;
-
-//    public void setArquivo(MultipartFile file) {
-//        try {
-//            for (Arquivo arquivo : arquivosAdicionais) {
-//                arquivo = new Arquivo(
-//                        file.getOriginalFilename(),
-//                        file.getContentType(),
-//                        file.getBytes()
-//                );
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

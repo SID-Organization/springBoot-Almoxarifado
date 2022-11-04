@@ -17,8 +17,5 @@ public class EspacoOrganizacional {
     private Integer idEspacoOrganizacional;
 
     @Column(nullable = false)
-    private Integer qtdItemEspacoOrganizacional;
-
-    @Column(nullable = false)
     private String nomeEspacoOrganizacional;
 }

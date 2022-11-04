@@ -36,8 +36,8 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Object> save(
             @RequestParam("item") @Valid String itemJson,
-            @RequestParam("image") MultipartFile file
-//            @RequestParam("additionalImages") MultipartFile[] additionalImages
+            @RequestParam("image") MultipartFile file,
+            @RequestParam(value = "additionalImages", required = false) MultipartFile[] additionalImages
     ) {
         ItemUtil itemUtil = new ItemUtil();
 
@@ -51,19 +51,21 @@ public class ItemController {
 
         Item itemSalvo = itemService.save(item);
 
-//        try {
-//            for (MultipartFile additionalImage : additionalImages) {
-//                Arquivo arquivo = new Arquivo();
-//                arquivo.setNomeArquivo(additionalImage.getOriginalFilename());
-//                arquivo.setTipoArquivo(additionalImage.getContentType());
-//                arquivo.setArquivo(additionalImage.getBytes());
-//                arquivo.setIdItem(itemSalvo);
-//
-//                arquivoService.save(arquivo);
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException("Erro ao converter a imagem");
-//        }
+        if (additionalImages != null) {
+            try {
+                for (MultipartFile additionalImage : additionalImages) {
+                    Arquivo arquivo = new Arquivo();
+                    arquivo.setNomeArquivo(additionalImage.getOriginalFilename());
+                    arquivo.setTipoArquivo(additionalImage.getContentType());
+                    arquivo.setArquivo(additionalImage.getBytes());
+                    arquivo.setIdItem(itemSalvo);
+
+                    arquivoService.save(arquivo);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Erro ao converter a imagem");
+            }
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
@@ -73,7 +75,6 @@ public class ItemController {
     public ResponseEntity<List<Item>> findAll() {
 
         List<Item> listaItens = itemService.findAll();
-
         return ResponseEntity.status(HttpStatus.OK).body(listaItens);
     }
 
@@ -101,14 +102,14 @@ public class ItemController {
 //        }
 //        return ResponseEntity.status(HttpStatus.OK).body(itemList);
 //    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Object> deleteById(@PathVariable(value = "id") Long id) {
-//        if (!itemService.existsById(id)) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                    .body("Não foi encontrado item com o id " + id);
-//        }
-//        itemService.deleteById(id);
-//        return ResponseEntity.status(HttpStatus.OK).body("Item com id " + id + " deletado com sucesso");
-//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteById(@PathVariable(value = "id") Long id) {
+        if (!itemService.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Não foi encontrado item com o id " + id);
+        }
+        itemService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Item com id " + id + " deletado com sucesso");
+    }
 }
