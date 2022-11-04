@@ -36,6 +36,7 @@ public class ReservaController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<Reserva> save(@RequestBody @Valid ReservaDTO reservaDTO) {
+        System.out.println(reservaDTO.toString());
         Reserva reserva = new Reserva();
         BeanUtils.copyProperties(reservaDTO, reserva);
         Reserva reservaSalva = reservaService.save(reserva);

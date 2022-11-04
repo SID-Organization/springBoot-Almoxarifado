@@ -19,11 +19,11 @@ public class ReservaItem {
     @Column(nullable = false)
     Integer qtdItensReserva;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_item", nullable = false)
     Item idItem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_reserva", nullable = false)
     Reserva idReserva;
 

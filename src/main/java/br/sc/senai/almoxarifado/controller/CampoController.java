@@ -34,10 +34,12 @@ public class CampoController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<Campo>> findAll() {
-
-        List<Campo> listaCampos = campoService.findAll();
-
-        return ResponseEntity.ok(listaCampos);
+        List listaCamposValores = new ArrayList();
+        for (Campo campo : campoService.findAll()) {
+            listaCamposValores.add(campo);
+            listaCamposValores.add(valorPredefinidoService.findByCampo(campo));
+        }
+        return ResponseEntity.ok(listaCamposValores);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
