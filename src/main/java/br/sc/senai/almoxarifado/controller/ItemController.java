@@ -35,7 +35,7 @@ public class ItemController {
 
         Item item = itemUtil.convertJsonToModel(itemJson);
 
-          itemService.save(item);
+        itemService.save(item);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
