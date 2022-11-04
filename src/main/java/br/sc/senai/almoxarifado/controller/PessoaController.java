@@ -22,11 +22,13 @@ public class PessoaController {
     @Autowired
     PessoaService pessoaService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<Pessoa>> findAll(Sort sort) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.findAll(sort));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{matricula}")
     public ResponseEntity<Object> findById(@PathVariable(value = "matricula") String matricula) {
         Optional<Pessoa> pessoa = pessoaService.findByMatricula(matricula);
@@ -37,6 +39,7 @@ public class PessoaController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{matricula}")
     public ResponseEntity<Object> deleteById(@PathVariable(value = "matricula") String matricula) {
         if (pessoaService.existsByMatricula(matricula)) {
@@ -47,6 +50,7 @@ public class PessoaController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody @Valid PessoaDTO pessoaDTO){
         if (pessoaService.existsByMatricula(pessoaDTO.getMatricula())) {
@@ -59,6 +63,7 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{matricula}")
     public ResponseEntity<Object> update(@PathVariable(value = "matricula") String matricula, @RequestBody @Valid PessoaDTO pessoaDTO) {
         Optional<Pessoa> pessoaOptional = pessoaService.findByMatricula(matricula);

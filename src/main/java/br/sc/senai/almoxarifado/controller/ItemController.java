@@ -103,6 +103,7 @@ public class ItemController {
 //        return ResponseEntity.status(HttpStatus.OK).body(itemList);
 //    }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable(value = "id") Long id) {
         if (!itemService.existsById(id)) {
@@ -111,5 +112,18 @@ public class ItemController {
         }
         itemService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Item com id " + id + " deletado com sucesso");
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") Long id, @RequestBody ItemDTO itemDTO) {
+        if (!itemService.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Não foi encontrado item com o id " + id);
+        }
+        Item item = itemService.findById(id).get();
+        BeanUtils.copyProperties(itemDTO, item);
+        itemService.save(item);
+        return ResponseEntity.status(HttpStatus.OK).body(item);
     }
 }

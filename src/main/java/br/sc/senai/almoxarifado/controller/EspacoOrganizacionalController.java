@@ -27,16 +27,18 @@ public class EspacoOrganizacionalController {
     @Autowired
     LocalizacaoService localizacaoService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
-    public ResponseEntity<List<EspacoOrganizacional>> findAll(){
+    public ResponseEntity<List<EspacoOrganizacional>> findAll() {
 
         List<EspacoOrganizacional> listaEspacoOrganizacionals = espacoOrganizacionalService.findAll();
 
         return ResponseEntity.ok(listaEspacoOrganizacionals);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
-    public ResponseEntity<EspacoOrganizacional> save(@RequestBody @Valid EspacoOrganizacionalDTO espacoOrganizacionalDTO){
+    public ResponseEntity<EspacoOrganizacional> save(@RequestBody @Valid EspacoOrganizacionalDTO espacoOrganizacionalDTO) {
         EspacoOrganizacional espacoOrganizacional = new EspacoOrganizacional();
 
         System.out.println(espacoOrganizacionalDTO);
@@ -59,8 +61,9 @@ public class EspacoOrganizacionalController {
         return ResponseEntity.status(HttpStatus.CREATED).body(espacoOrganizacional);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/id/{id}")
-    public ResponseEntity<Object> findById(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<Object> findById(@PathVariable(value = "id") Integer id) {
         Optional<EspacoOrganizacional> espacoOrganizacional = espacoOrganizacionalService.findById(id);
         System.out.println("passou aqui");
         if (espacoOrganizacional.isEmpty()) {
@@ -68,5 +71,18 @@ public class EspacoOrganizacionalController {
                     .body("Não foi encontrado reserva com o id " + id + ".");
         }
         return ResponseEntity.status(HttpStatus.OK).body(localizacaoService.findByEspacoOrganizacional(espacoOrganizacional.get()));
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/id/{id}")
+    public ResponseEntity<EspacoOrganizacional> update(@PathVariable(value = "id") Integer id, @RequestBody EspacoOrganizacionalDTO espacoOrganizacionalDTO) {
+        Optional<EspacoOrganizacional> espacoOrganizacional = espacoOrganizacionalService.findById(id);
+        if (espacoOrganizacional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+        BeanUtils.copyProperties(espacoOrganizacionalDTO, espacoOrganizacional.get());
+        espacoOrganizacionalService.save(espacoOrganizacional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(espacoOrganizacional.get());
     }
 }

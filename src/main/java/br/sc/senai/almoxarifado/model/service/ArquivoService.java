@@ -1,6 +1,7 @@
 package br.sc.senai.almoxarifado.model.service;
 
 import br.sc.senai.almoxarifado.model.entities.Arquivo;
+import br.sc.senai.almoxarifado.model.entities.Item;
 import br.sc.senai.almoxarifado.repository.ArquivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class ArquivoService {
 
     public void deleteById(Integer integer) {
         arquivoRepository.deleteById(integer);
+    }
+
+    public List<Arquivo> findAllByItem_IdItem(Item idItem) {
+        return arquivoRepository.findAllByIdItem(idItem);
     }
 }
