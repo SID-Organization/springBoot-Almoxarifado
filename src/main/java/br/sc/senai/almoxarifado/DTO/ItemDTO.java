@@ -17,7 +17,7 @@ public class ItemDTO {
     private String caracteristicaItem;
     private String classificacaoItem;
     private String detalhesItem;
+    private Integer quantidadeItem;
     private Boolean itemDescartavel;
     private EspacoOrganizacional idEspacoOrganizacional;
-    private Integer quantidadeItem;
 }

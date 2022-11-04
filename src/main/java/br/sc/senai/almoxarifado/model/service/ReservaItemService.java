@@ -24,6 +24,7 @@ public class ReservaItemService {
     }
 
     public List<ReservaItem> findByIdReserva(Reserva reserva) {
+        System.out.println(reservaItemRepository.findByIdReserva(reserva).get(0).getQtdItensReserva());
         return reservaItemRepository.findByIdReserva(reserva);
     }
 

@@ -38,7 +38,7 @@ public class Item {
 
     @NonNull
     @Column(length = 1, nullable = false)
-    private Integer itemDescartavel;
+    private Boolean itemDescartavel;
 
     @Column(nullable = false)
     private Integer quantidadeItem;

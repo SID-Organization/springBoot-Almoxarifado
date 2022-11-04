@@ -5,6 +5,7 @@ import br.sc.senai.almoxarifado.model.entities.Ocorrencia;
 import br.sc.senai.almoxarifado.model.entities.Pessoa;
 import br.sc.senai.almoxarifado.model.service.ItemService;
 import br.sc.senai.almoxarifado.model.service.OcorrenciaService;
+import br.sc.senai.almoxarifado.model.service.PessoaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/almoxarifado/ocorrencias")
@@ -28,15 +30,16 @@ public class OcorrenciaController {
         return ResponseEntity.ok(listaOcorrencias);
     }
 
-//    @GetMapping("/{matricula}")
-//    public ResponseEntity<Object> findByPessoa(@PathVariable(value = "matricula") Pessoa pessoa) {
-//        if (ocorrenciaService.findByPessoa(pessoa).isEmpty()) {
-//            return ResponseEntity.status(404).body("Não foi encontrado ocorrencia com a pessoa " + pessoa.getNome());
-//        } else {
-//            return ResponseEntity.ok(ocorrenciaService.findByPessoa(pessoa));
-//        }
-//    }
-//
+    @GetMapping("/matricula/{matricula}")
+    public ResponseEntity<Object> findByPessoa(@PathVariable(value = "matricula") Long matriculaPessoa) {
+
+        if (ocorrenciaService.findByMatriculaPessoa(matriculaPessoa).isEmpty()) {
+            return ResponseEntity.status(404).body("Não foi encontrado ocorrencia com a matricula " + matriculaPessoa);
+        } else {
+            return ResponseEntity.ok(ocorrenciaService.findByMatriculaPessoa(matriculaPessoa));
+        }
+    }
+
 //    @GetMapping("/item/{idItem}")
 //    public ResponseEntity<Object> findByItem(@PathVariable(value = "idItem") Long idItem) {
 //        if (ocorrenciaService.findByIdItem(idItem).isEmpty()) {

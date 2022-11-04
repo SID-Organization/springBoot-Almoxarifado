@@ -48,7 +48,7 @@ public class ItemController {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao converter a imagem");
         }
-
+        item.setQuantidadeItem(1);
         Item itemSalvo = itemService.save(item);
 
         if (additionalImages != null) {

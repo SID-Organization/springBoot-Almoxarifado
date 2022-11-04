@@ -4,6 +4,7 @@ import br.sc.senai.almoxarifado.DTO.ReservaDTO;
 import br.sc.senai.almoxarifado.model.entities.Reserva;
 import br.sc.senai.almoxarifado.model.entities.ReservaItem;
 import br.sc.senai.almoxarifado.model.entities.Status;
+import br.sc.senai.almoxarifado.model.service.OcorrenciaService;
 import br.sc.senai.almoxarifado.model.service.ReservaItemService;
 import br.sc.senai.almoxarifado.model.service.ReservaService;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +27,9 @@ public class ReservaController {
 
     @Autowired
     ReservaItemService reservaItemService;
+
+    @Autowired
+    OcorrenciaService ocorrenciaService;
 
     @GetMapping
     public ResponseEntity<List<Reserva>> findAll() {
@@ -68,11 +72,38 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable(value = "id") Integer id) {
-        if (reservaService.existsById(id)) {
-            reservaService.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Reserva com o id " + id + " foi deletado com sucesso");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado reserva com o id " + id);
+        Reserva reserva = reservaService.findById(id).get();
+        List<ReservaItem> listaReservaItem = reservaItemService.findByIdReserva(reserva);
+        if (listaReservaItem.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Não foi encontrado reserva com o id " + id + ".");
         }
+
+
+        for (ReservaItem reservaItem : listaReservaItem) {
+            if (ocorrenciaService.findByReservaItem(reservaItem) == null) {
+                reservaItemService.deleteById(reservaItem.getIdReservaItem());
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Não foi possível excluir a reserva com o id " + id + " pois possui ocorrências.");
+            }
+        }
+        reservaService.deleteById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Reserva com o id " + id + " foi deletado com sucesso");
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody @Valid ReservaDTO reservaDTO) {
+        Optional<Reserva> reserva = reservaService.findById(id);
+        if (reserva.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Não foi encontrado reserva com o id " + id + ".");
+        }
+        Reserva reservaAtualizada = reserva.get();
+        BeanUtils.copyProperties(reservaDTO, reservaAtualizada);
+        reservaService.save(reservaAtualizada);
+        return ResponseEntity.status(HttpStatus.OK).body(reservaAtualizada);
+    }
+
 }

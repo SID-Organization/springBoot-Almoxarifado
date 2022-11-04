@@ -37,8 +37,8 @@ public class Reserva
     @NonNull
     @Column(length = 50, nullable = false)
     private Date dataDevolucao;
-//
-//    @OneToMany(mappedBy = "idReserva",fetch = FetchType.LAZY)
-//    private List<ReservaItem> reservaItem;
+
+    @ManyToMany(mappedBy = "idReserva", cascade = CascadeType.ALL)
+    private List<ReservaItem> reservaItem;
 
 }

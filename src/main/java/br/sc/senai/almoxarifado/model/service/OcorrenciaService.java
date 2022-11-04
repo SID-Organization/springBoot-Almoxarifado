@@ -2,6 +2,7 @@ package br.sc.senai.almoxarifado.model.service;
 
 import br.sc.senai.almoxarifado.model.entities.Ocorrencia;
 import br.sc.senai.almoxarifado.model.entities.Pessoa;
+import br.sc.senai.almoxarifado.model.entities.ReservaItem;
 import br.sc.senai.almoxarifado.repository.OcorrenciaRepository;
 import br.sc.senai.almoxarifado.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +35,13 @@ public class OcorrenciaService {
     public void deleteById(Integer integer) {
         ocorrenciaRepository.deleteById(integer);
     }
+
+    public List<Ocorrencia> findByMatriculaPessoa(Long matriculaPessoa) {
+        return ocorrenciaRepository.findByMatriculaPessoa(matriculaPessoa);
+    }
+
+    public List<Ocorrencia> findByReservaItem(ReservaItem reservaItem) {
+        return ocorrenciaRepository.findByReservaItem(reservaItem);
+    }
+
 }

@@ -12,7 +12,6 @@ public class ItemUtil {
 
     public Item convertJsonToModel(String itemJson) {
         try {
-            System.out.println("Json: " + itemJson);
             ItemDTO itemDto = convertToDto(itemJson);
             return convertDtoToModel(itemDto);
         } catch (Exception e) {
@@ -26,7 +25,6 @@ public class ItemUtil {
 
     public ItemDTO convertToDto(String  itemJson) {
         try{
-            System.out.println("Json2: " + itemJson);
             return this.mapper.readValue(itemJson, ItemDTO.class);
         } catch (Exception e){
             throw  new RuntimeException(e);
