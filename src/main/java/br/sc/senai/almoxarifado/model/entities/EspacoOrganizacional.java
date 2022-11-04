@@ -12,16 +12,10 @@ import java.util.List;
 @EqualsAndHashCode
 public class EspacoOrganizacional {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer idEspacoOrganizacional;
 
-    @NonNull
-    @Column(nullable = false)
-    private Integer qtdItemEspacoOrganizacional;
-
-    @NonNull
     @Column(nullable = false)
     private String nomeEspacoOrganizacional;
-
 }

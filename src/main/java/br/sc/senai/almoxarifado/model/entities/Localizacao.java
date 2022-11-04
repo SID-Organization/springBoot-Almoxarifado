@@ -19,7 +19,7 @@ public class Localizacao {
 
     @NonNull
     @ManyToOne
-    @JoinColumn(name = "idEspacoOrganizacional")
+    @JoinColumn(name = "idEspacoOrganizacional", nullable = false)
     private EspacoOrganizacional idEspacoOrganizacional;
 
     @NonNull

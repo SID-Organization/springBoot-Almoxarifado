@@ -9,7 +9,6 @@ import java.util.List;
 
 @Getter @Setter
 public class EspacoOrganizacionalDTO {
-    private Integer qtdItemEspacoOrganizacional;
     private String nomeEspacoOrganizacional;
     private List<Localizacao> localizacoes;
 }

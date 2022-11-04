@@ -1,15 +1,19 @@
 package br.sc.senai.almoxarifado.model.entities;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.File;
+import java.util.List;
 
 @Entity
 @Table(name = "itens")
-@Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 public class Item {
 
@@ -36,8 +40,12 @@ public class Item {
     @Column(length = 1, nullable = false)
     private Integer itemDescartavel;
 
+    @Column(nullable = false)
+    private Integer quantidadeItem;
+
     @Column
-    private File fotoIlustrativa;
+    @Lob
+    private byte[] fotoIlustrativa;
 
     @NonNull
     @ManyToOne(cascade = CascadeType.REFRESH)

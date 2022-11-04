@@ -7,11 +7,13 @@ import br.sc.senai.almoxarifado.model.entities.Campo;
 import br.sc.senai.almoxarifado.model.entities.Reserva;
 import br.sc.senai.almoxarifado.model.service.ArquivoService;
 import org.atmosphere.config.service.Post;
+import org.atmosphere.config.service.Put;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -41,6 +43,26 @@ public class ArquivoController {
         System.out.println(arquivo);
         Arquivo arquivoSalvo = arquivoService.save(arquivo);
         return ResponseEntity.status(HttpStatus.CREATED).body(arquivoSalvo);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Arquivo> update(
+            @PathVariable(value = "id") Integer id,
+            @RequestParam("arquivo") MultipartFile file
+    ) {
+        Arquivo arquivo = arquivoService.findById(id).get();
+        try {
+            arquivo.setArquivo(file.getBytes());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        try {
+            Arquivo arquivoSalvo = arquivoService.save(arquivo);
+            return ResponseEntity.status(HttpStatus.OK).body(arquivoSalvo);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 

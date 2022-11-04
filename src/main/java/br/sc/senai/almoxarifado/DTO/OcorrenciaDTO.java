@@ -8,5 +8,5 @@ import lombok.ToString;
 @ToString
 public class OcorrenciaDTO {
     private String descricao;
-    private ReservaItem idReserva;
+    private ReservaItem reservaItem;
 }
