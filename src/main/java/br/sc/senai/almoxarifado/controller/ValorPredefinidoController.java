@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/almoxarifado/valor_predefinido")
+@RequestMapping("/almoxarifado/valor-predefinido")
 public class ValorPredefinidoController {
     @Autowired
     ValorPredefinidoService valorPredefinidoService;
