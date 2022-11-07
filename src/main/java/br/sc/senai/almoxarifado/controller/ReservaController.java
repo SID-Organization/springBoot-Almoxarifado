@@ -42,7 +42,6 @@ public class ReservaController {
         BeanUtils.copyProperties(reservaDTO, reserva);
         reserva.setStatus(Status.ATIVO);
         Reserva reservaSalva = reservaService.save(reserva);
-
         for (ReservaItem reservaItem : reservaDTO.getReservaItem()) {
             reservaItem.setIdReserva(reservaSalva);
             reservaItemService.save(reservaItem);
@@ -50,8 +49,9 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
     }
 
-    @GetMapping("/{status}")
+    @GetMapping("/status/{status}")
     public ResponseEntity<Object> findByStatus(@PathVariable(value = "status") Status status) {
+        System.out.println("Entrou");
         List<Reserva> reservasList = reservaService.findByStatus(status);
         if (reservasList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -78,16 +78,16 @@ public class ReservaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Não foi encontrado reserva com o id " + id + ".");
         }
-
-
-        for (ReservaItem reservaItem : listaReservaItem) {
-            if (ocorrenciaService.findByReservaItem(reservaItem) == null) {
-                reservaItemService.deleteById(reservaItem.getIdReservaItem());
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("Não foi possível excluir a reserva com o id " + id + " pois possui ocorrências.");
-            }
-        }
+//
+//
+//        for (ReservaItem reservaItem : listaReservaItem) {
+//            if (ocorrenciaService.findByReservaItem(reservaItem) == null) {
+//                reservaItemService.deleteById(reservaItem.getIdReservaItem());
+//            } else {
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                        .body("Não foi possível excluir a reserva com o id " + id + " pois possui ocorrências.");
+//            }
+//        }
         reservaService.deleteById(id);
 
         return ResponseEntity.status(HttpStatus.OK).body("Reserva com o id " + id + " foi deletado com sucesso");

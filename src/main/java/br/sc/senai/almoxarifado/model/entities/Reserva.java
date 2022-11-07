@@ -38,7 +38,7 @@ public class Reserva
     @Column(length = 50, nullable = false)
     private Date dataDevolucao;
 
-    @ManyToMany(mappedBy = "idReserva", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "idReserva")
     private List<ReservaItem> reservaItem;
 
 }
