@@ -78,30 +78,32 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(listaItens);
     }
 
-//    @GetMapping("/{classificacao}")
-//    public ResponseEntity<Object> findByClassificacao(@PathVariable(value = "classificacao") String classificacao) {
-//        List<Item> itemList = itemService.findByClassificacao(classificacao);
-//        if (itemList.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                    .body("Não foi encontrado item com a classificação " + classificacao);
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(itemList);
-//    }
-//
-//    @GetMapping("/{descartavel}")
-//    public ResponseEntity<Object> findByItemDescartavel(@PathVariable(value = "descartavel") Integer descartavel) {
-//        List<Item> itemList = itemService.findByItemDescartavel(descartavel);
-//        if (itemList.isEmpty()) {
-//            if (descartavel == 1) {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                        .body("Não há itens descartáveis");
-//            } else {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                        .body("Não há itens não descartáveis");
-//            }
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(itemList);
-//    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/classificacao/{classificacao}")
+    public ResponseEntity<Object> findByClassificacao(@PathVariable(value = "classificacao") String classificacao) {
+        List<Item> itemList = itemService.findByClassificacao(classificacao);
+        if (itemList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Não foi encontrado item com a classificação " + classificacao);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(itemList);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/descartavel/{descartavel}")
+    public ResponseEntity<Object> findByItemDescartavel(@PathVariable(value = "descartavel") Boolean descartavel) {
+        List<Item> itemList = itemService.findByItemDescartavel(descartavel);
+        if (itemList.isEmpty()) {
+            if (descartavel == true) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Não há itens descartáveis");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Não há itens não descartáveis");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(itemList);
+    }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")

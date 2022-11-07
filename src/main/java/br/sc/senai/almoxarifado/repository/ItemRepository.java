@@ -12,7 +12,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findByClassificacaoItem(String classificacao);
 
-    List<Item> findByItemDescartavel(Integer itemDescartavel);
+    List<Item> findByItemDescartavel(Boolean itemDescartavel);
 
     boolean existsById(Integer id);
 }

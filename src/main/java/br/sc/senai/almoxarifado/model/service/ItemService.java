@@ -30,7 +30,7 @@ public class ItemService {
         return itemRepository.findByClassificacaoItem(classificacao);
     }
 
-    public List<Item> findByItemDescartavel(Integer itemDescartavel) {
+    public List<Item> findByItemDescartavel(Boolean itemDescartavel) {
         return itemRepository.findByItemDescartavel(itemDescartavel);
     }
 
