@@ -31,11 +31,13 @@ public class ReservaController {
     @Autowired
     OcorrenciaService ocorrenciaService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<Reserva>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(reservaService.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<Reserva> save(@RequestBody @Valid ReservaDTO reservaDTO) {
         Reserva reserva = new Reserva();
@@ -49,6 +51,7 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/status/{status}")
     public ResponseEntity<Object> findByStatus(@PathVariable(value = "status") Status status) {
         System.out.println("Entrou");
@@ -60,6 +63,7 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.OK).body(reservasList);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/id/{id}")
     public ResponseEntity<Object> findById(@PathVariable(value = "id") Integer id) {
         Optional<Reserva> reserva = reservaService.findById(id);
@@ -70,6 +74,7 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.OK).body(reservaItemService.findByIdReserva(reserva.get()));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable(value = "id") Integer id) {
         Reserva reserva = reservaService.findById(id).get();
@@ -93,6 +98,7 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.OK).body("Reserva com o id " + id + " foi deletado com sucesso");
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody @Valid ReservaDTO reservaDTO) {
         Optional<Reserva> reserva = reservaService.findById(id);
@@ -105,5 +111,4 @@ public class ReservaController {
         reservaService.save(reservaAtualizada);
         return ResponseEntity.status(HttpStatus.OK).body(reservaAtualizada);
     }
-
 }

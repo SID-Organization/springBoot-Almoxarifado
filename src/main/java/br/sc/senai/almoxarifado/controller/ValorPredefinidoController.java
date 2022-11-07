@@ -13,30 +13,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/almoxarifado/valor_predefinido")
+@RequestMapping("/almoxarifado/valor-predefinido")
 public class ValorPredefinidoController {
     @Autowired
     ValorPredefinidoService valorPredefinidoService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<ValorPredefinido>> findAll(){
         List<ValorPredefinido> listaValorPredefinido = valorPredefinidoService.findAll();
         return ResponseEntity.ok(listaValorPredefinido);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/campo/{id}")
     public ResponseEntity<List<ValorPredefinido>> findByCampo(@PathVariable Campo idCampo){
         List<ValorPredefinido> listaValorPredefinido = valorPredefinidoService.findByCampo(idCampo);
         return ResponseEntity.ok(listaValorPredefinido);
-    }
-
-    @PostMapping()
-    public ResponseEntity<Object> save(@RequestBody ValorPredefinidoDTO valorPredefinidoDTO){
-//        ValorPredefinido valorPredefinido = new ValorPredefinido();
-//        BeanUtils.copyProperties(valorPredefinidoDTO, valorPredefinido);
-//        System.out.println("1 " + valorPredefinidoDTO.getIdCampo());
-//        ValorPredefinido valorPredefinidoSalvo = valorPredefinidoService.save(valorPredefinido);
-//        System.out.println("2 " + valorPredefinidoSalvo.getIdCampo());
-        return ResponseEntity.ok("YOO");
     }
 }

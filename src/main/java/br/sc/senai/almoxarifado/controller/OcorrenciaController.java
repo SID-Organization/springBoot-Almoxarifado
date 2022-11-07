@@ -23,7 +23,7 @@ public class OcorrenciaController {
     @Autowired
     private OcorrenciaService ocorrenciaService;
 
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<Ocorrencia>> findAll() {
         List<Ocorrencia> listaOcorrencias = ocorrenciaService.findAll();
@@ -58,6 +58,8 @@ public class OcorrenciaController {
 //        }
 //    }
 //
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody @Valid OcorrenciaDTO ocorrenciaDTO) {
         if (ocorrenciaDTO.getDescricao() == null) {
