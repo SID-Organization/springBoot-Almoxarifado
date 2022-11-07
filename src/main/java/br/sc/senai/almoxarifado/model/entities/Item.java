@@ -48,7 +48,7 @@ public class Item {
     private byte[] fotoIlustrativa;
 
     @NonNull
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "posicaoEstoque", referencedColumnName = "idEspacoOrganizacional", nullable = false)
     private EspacoOrganizacional idEspacoOrganizacional;
 }

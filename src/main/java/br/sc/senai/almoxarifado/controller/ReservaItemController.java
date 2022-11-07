@@ -23,6 +23,7 @@ public class ReservaItemController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<Object> findAll(){
+        System.out.println("Entrou no controller");
         List<ReservaItem> listaReservasItens = reservaItemService.findAll();
         if(listaReservasItens.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado nenhum item de reserva.");

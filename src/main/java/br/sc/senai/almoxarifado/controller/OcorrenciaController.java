@@ -8,6 +8,7 @@ import br.sc.senai.almoxarifado.model.service.OcorrenciaService;
 import br.sc.senai.almoxarifado.model.service.PessoaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,11 @@ public class OcorrenciaController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
-    public ResponseEntity<List<Ocorrencia>> findAll() {
+    public ResponseEntity<Object> findAll() {
         List<Ocorrencia> listaOcorrencias = ocorrenciaService.findAll();
+        if (listaOcorrencias.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma ocorrência encontrada");
+        }
         return ResponseEntity.ok(listaOcorrencias);
     }
 

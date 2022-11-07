@@ -20,11 +20,12 @@ public class ReservaItemService {
     ReservaItemRepository reservaItemRepository;
 
     public List<ReservaItem> findAll(){
+        System.out.println("Entrou no service");
         return reservaItemRepository.findAll();
     }
 
     public List<ReservaItem> findByIdReserva(Reserva reserva) {
-        System.out.println(reservaItemRepository.findByIdReserva(reserva).get(0).getQtdItensReserva());
+        System.out.println("RESERVA: " + reservaItemRepository.findByIdReserva(reserva).get(0).getQtdItensReserva());
         return reservaItemRepository.findByIdReserva(reserva);
     }
 

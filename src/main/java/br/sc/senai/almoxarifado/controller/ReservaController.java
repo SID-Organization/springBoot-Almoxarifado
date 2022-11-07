@@ -33,8 +33,12 @@ public class ReservaController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
-    public ResponseEntity<List<Reserva>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(reservaService.findAll());
+    public ResponseEntity<Object> findAll() {
+        List<Reserva> listaReservas = reservaService.findAll();
+        if (listaReservas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma reserva encontrada");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(listaReservas);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -46,6 +50,7 @@ public class ReservaController {
         Reserva reservaSalva = reservaService.save(reserva);
         for (ReservaItem reservaItem : reservaDTO.getReservaItem()) {
             reservaItem.setIdReserva(reservaSalva);
+            System.out.println("Reserva item: " + reservaItem.getIdItem().getId());
             reservaItemService.save(reservaItem);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
@@ -54,7 +59,6 @@ public class ReservaController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/status/{status}")
     public ResponseEntity<Object> findByStatus(@PathVariable(value = "status") Status status) {
-        System.out.println("Entrou");
         List<Reserva> reservasList = reservaService.findByStatus(status);
         if (reservasList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
