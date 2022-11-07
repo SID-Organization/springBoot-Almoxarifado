@@ -6,6 +6,7 @@ import br.sc.senai.almoxarifado.model.entities.ReservaItem;
 import br.sc.senai.almoxarifado.model.entities.Status;
 import br.sc.senai.almoxarifado.model.service.ReservaItemService;
 import br.sc.senai.almoxarifado.model.service.ReservaService;
+import org.atmosphere.config.service.Put;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -78,5 +79,19 @@ public class ReservaController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado reserva com o id " + id);
         }
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody @Valid ReservaDTO reservaDTO) {
+        Optional<Reserva> reserva = reservaService.findById(id);
+        if (reserva.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Não foi encontrado reserva com o id " + id + ".");
+        }
+        Reserva reservaAtualizada = reserva.get();
+        BeanUtils.copyProperties(reservaDTO, reservaAtualizada);
+        reservaService.save(reservaAtualizada);
+        return ResponseEntity.status(HttpStatus.OK).body(reservaAtualizada);
     }
 }
