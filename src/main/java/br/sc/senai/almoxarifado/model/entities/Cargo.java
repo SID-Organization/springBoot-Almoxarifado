@@ -4,7 +4,8 @@ public enum Cargo {
     ADMINISTRADOR("Administrador"),
     ATENDENTE("Atendente"),
     ASSISTENTE("Assistente"),
-    PROFESSOR("Professor");
+    PROFESSOR("Professor"),
+    PENDENTE("Pendente");
 
 
     String nome;

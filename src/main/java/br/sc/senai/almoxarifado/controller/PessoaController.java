@@ -1,6 +1,7 @@
 package br.sc.senai.almoxarifado.controller;
 
 import br.sc.senai.almoxarifado.DTO.PessoaDTO;
+import br.sc.senai.almoxarifado.model.entities.Cargo;
 import br.sc.senai.almoxarifado.model.entities.Pessoa;
 import br.sc.senai.almoxarifado.model.service.PessoaService;
 import org.springframework.beans.BeanUtils;
@@ -75,6 +76,17 @@ public class PessoaController {
         BeanUtils.copyProperties(pessoaDTO, pessoa);
         pessoaService.save(pessoa);
         return ResponseEntity.status(HttpStatus.OK).body("Pessoa com o matricula " + matricula + " foi atualizado com sucesso");
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/cargo/{cargo}")
+    public ResponseEntity<Object> findByCargo(@PathVariable(value = "cargo") Cargo cargo) {
+        List<Pessoa> pessoas = pessoaService.findAllByCargo(cargo);
+        if (pessoas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado pessoa com o cargo " + cargo);
+        } else {
+            return ResponseEntity.ok(pessoas);
+        }
     }
 
 }

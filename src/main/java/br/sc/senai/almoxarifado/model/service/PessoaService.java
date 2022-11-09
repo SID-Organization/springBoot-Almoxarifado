@@ -1,5 +1,6 @@
 package br.sc.senai.almoxarifado.model.service;
 
+import br.sc.senai.almoxarifado.model.entities.Cargo;
 import br.sc.senai.almoxarifado.model.entities.Pessoa;
 import br.sc.senai.almoxarifado.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,9 @@ public class PessoaService {
 
     public <S extends Pessoa> Page<S> findAll(Example<S> example, Pageable pageable) {
         return pessoaRepository.findAll(example, pageable);
+    }
+
+    public List<Pessoa> findAllByCargo(Cargo cargo) {
+        return pessoaRepository.findAllByCargo(cargo);
     }
 }
