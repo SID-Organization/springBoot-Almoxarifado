@@ -68,7 +68,7 @@ public class EspacoOrganizacionalController {
         System.out.println("passou aqui");
         if (espacoOrganizacional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Não foi encontrado reserva com o id " + id + ".");
+                    .body("Não foi espaco com o id " + id + ".");
         }
         return ResponseEntity.status(HttpStatus.OK).body(localizacaoService.findByEspacoOrganizacional(espacoOrganizacional.get()));
     }
